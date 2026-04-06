@@ -24,7 +24,11 @@ public class Main {
         System.out.print("Enter your middle name: ");
         String inputMiddleName = scanner.nextLine();
         Optional<String> optionalMiddleName = Optional.ofNullable(inputMiddleName).filter(name -> !name.isBlank());
-        String middleName = optionalMiddleName.orElseThrow(() -> new IllegalArgumentException("Middle name cannot be empty"));
-        System.out.println("middleName = " + middleName);
+        try {
+            String middleName = optionalMiddleName.orElseThrow(() -> new IllegalArgumentException("Middle name cannot be empty"));
+            System.out.println("middleName = " + middleName);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
